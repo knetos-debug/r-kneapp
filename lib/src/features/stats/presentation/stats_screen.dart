@@ -22,10 +22,15 @@ class StatsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Statistik'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          tooltip: 'Tillbaka till räknaren',
-          onPressed: () => context.pop(),
+        leading: Semantics(
+          button: true,
+          label: 'Tillbaka till räknaren',
+          excludeSemantics: true,
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: 'Tillbaka till räknaren',
+            onPressed: () => context.pop(),
+          ),
         ),
       ),
       body: SafeArea(
@@ -87,13 +92,21 @@ class StatsScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              OutlinedButton.icon(
-                onPressed: () => context.goNamed(CounterScreen.routeName),
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(48),
+              Tooltip(
+                message: 'Tillbaka till räknaren',
+                child: Semantics(
+                  button: true,
+                  label: 'Tillbaka till räknaren',
+                  excludeSemantics: true,
+                  child: OutlinedButton.icon(
+                    onPressed: () => context.goNamed(CounterScreen.routeName),
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(48),
+                    ),
+                    icon: const Icon(Icons.arrow_back),
+                    label: const Text('Tillbaka till räknaren'),
+                  ),
                 ),
-                icon: const Icon(Icons.arrow_back),
-                label: const Text('Tillbaka till räknaren'),
               ),
             ],
           ),
